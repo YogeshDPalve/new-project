@@ -1,6 +1,8 @@
 package com.edigest.journalApp.controller;
 
 import com.edigest.journalApp.entity.JournalEntry;
+import com.edigest.journalApp.service.JournalEntryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,16 +14,19 @@ import java.util.Map;
 @RequestMapping("/journal")
 public class journalEntryControllerV2 {
 
-    @GetMapping("/get") // Get method
-    public List<JournalEntry> getAll(){
-            return null;
-    }
+    @Autowired
+    private JournalEntryService journalEntryService;
 
-    @PostMapping("/post")  // Post method
+
+    @GetMapping() // Get method
+
+
+    @PostMapping()  // Post method
     public boolean createEntry(@RequestBody JournalEntry myEntry ){
-        return  false;
+        journalEntryService.saveEntry(myEntry);
+        return true;
     }
-    @GetMapping("id/{myId}")
+    @GetMapping()
     public JournalEntry getJournalEntryById(@PathVariable Long myId){
 return null;
     }
